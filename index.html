@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Rahman Store — Jual Beli Akun eFootball</title>
+  <meta name="description" content="Rahman Store - Marketplace jual beli akun eFootball. Aman, cepat, & langsung kontak via WhatsApp." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Minor custom styles */
+    .card-hover:hover { transform: translateY(-6px); box-shadow: 0 10px 20px rgba(0,0,0,0.08);} 
+    .no-scroll { overflow: hidden; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+  <!-- Header -->
+  <header class="bg-white border-b">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-gradient-to-tr from-indigo-500 to-pink-500 rounded-md flex items-center justify-center text-white font-bold">RS</div>
+        <div>
+          <h1 class="text-lg font-semibold">Rahman Store</h1>
+          <p class="text-xs text-gray-500">Marketplace Jual Beli Akun eFootball</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-4">
+        <button id="openCartBtn" class="px-3 py-2 bg-indigo-600 text-white rounded-md">Keranjang (<span id="cartCount">0</span>)</button>
+        <a id="waContactTop" href="https://wa.me/6285183415077/v?text=Halo%20Rahman%20Store%2C%20saya%20ingin%20bertanya" target="_blank" class="px-3 py-2 border rounded-md text-green-600">Hubungi WA</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="max-w-6xl mx-auto px-4 py-8 grid md:grid-cols-2 gap-8 items-center">
+    <div>
+      <h2 class="text-3xl font-extrabold">Beli & Jual Akun eFootball dengan Aman</h2>
+      <p class="mt-3 text-gray-600">Pilih dari berbagai akun berperingkat, tim lengkap, dan harga yang kompetitif. Transaksi cepat melalui WhatsApp.</p>
+
+      <div class="mt-6 flex gap-3">
+        <a href="#products" class="px-4 py-2 bg-indigo-600 text-white rounded-md">Lihat Produk</a>
+        <a href="#sell" class="px-4 py-2 border rounded-md">Jual Akun</a>
+      </div>
+
+      <ul class="mt-6 text-sm text-gray-500 space-y-2">
+        <li>✅ Verifikasi akun sebelum pengiriman</li>
+        <li>✅ Garansi 3 hari (lihat syarat)</li>
+        <li>✅ Pembayaran via transfer / COD (Datang Ke Tempat)</li>
+      </ul>
+    </div>
+    <div class="bg-white rounded-lg p-4 shadow-sm">
+      <img src="https://img.konami.com/efootball/s/img/main_page_1_visual_v5_0.png?v=820" alt="eFootball" class="w-full rounded-md" />
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section id="products" class="max-w-6xl mx-auto px-4 py-8">
+    <div class="flex items-center justify-between">
+      <h3 class="text-2xl font-bold">Daftar Akun</h3>
+      <div class="text-sm text-gray-500">Filter: <select id="filterRank" class="border px-2 py-1 rounded-md">
+        <option value="all">Semua</option>
+        <option value="Mid">Menengah</option>
+        <option value="Pro">Sultan1</option>
+        <option value="pro">Sultan</option>
+        <option value="new">Pemula</option>
+        <option value="new1">pemula2</option>
+        <option value="new2">pemula3</option>
+      </select></div>
+    </div>
+
+    <div id="productGrid" class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Product cards injected by JS -->
+    </div>
+  </section>
+
+  <!-- Sell Form -->
+  <section id="sell" class="max-w-4xl mx-auto px-4 py-8">
+    <h3 class="text-2xl font-bold">Jual Akun Anda</h3>
+    <p class="text-gray-600 mt-1">Isi detail di bawah, admin akan menghubungi via WhatsApp.</p>
+
+    <form id="sellForm" class="mt-4 grid grid-cols-1 gap-3 bg-white p-4 rounded-md shadow-sm">
+      <input required name="name" placeholder="Nama lengkap" class="border px-3 py-2 rounded-md" />
+      <input required name="wa" placeholder="Nomor WhatsApp (contoh: 62812...)" class="border px-3 py-2 rounded-md" />
+      <input required name="title" placeholder="Judul listing (contoh: Akun eFootball Rank Pro)" class="border px-3 py-2 rounded-md" />
+      <textarea name="desc" placeholder="Deskripsi singkat (tim, pemain unggulan, level)" class="border px-3 py-2 rounded-md"></textarea>
+      <input name="price" type="number" placeholder="Harga (Rp)" class="border px-3 py-2 rounded-md" />
+      <button type="submit" class="mt-2 px-4 py-2 bg-green-600 text-white rounded-md">Kirim Listing</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="mt-12 bg-white border-t">
+    <div class="max-w-6xl mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center gap-3">
+      <div class="text-sm text-gray-600">© Rahman Store — Jual Beli Akun eFootball</div>
+      <div class="text-sm text-gray-600">Jangan Lakukan pembayaran Sebelum Admin Membalas.</div>
+    </div>
+  </footer>
+
+  <!-- Cart Modal -->
+  <div id="cartModal" class="fixed inset-0 bg-black bg-opacity-40 hidden items-center justify-center z-50">
+    <div class="bg-white rounded-lg max-w-xl w-full p-4">
+      <div class="flex justify-between items-center">
+        <h4 class="text-lg font-bold">Keranjang</h4>
+        <button id="closeCartBtn" class="text-gray-500">✕</button>
+      </div>
+      <div id="cartList" class="mt-4 space-y-3">Belum ada produk di keranjang.</div>
+      <div class="mt-4 flex justify-between items-center">
+        <div>Total: Rp <span id="cartTotal">0</span></div>
+        <div>
+          <button id="clearCartBtn" class="mr-2 px-3 py-2 border rounded-md">Bersihkan</button>
+          <button id="checkoutBtn" class="px-3 py-2 bg-indigo-600 text-white rounded-md">Checkout via WA</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ====== Sample product data ======
+    const PRODUCTS = [
+      { id: 1, title: 'Akun eFootball - Menengah ', price: 220000, rank: 'Mid', img: 'akun22000.jpeg', desc: 'login Konami Only,gp ios kosong,Full SS Ke Wa' },
+      { id: 2, title: 'Akun eFootball - Sultan', price: 1400000, rank: 'pro', img: 'Untitled.jpg', desc: 'gp ios kosong,Log konami,Reg Indo,Full SS Ke Wa #Terjual ' },
+      { id: 3, title: 'Akun eFootball - Pemula', price: 30000, rank: 'new', img: 'akun30k.jpeg', desc: 'Gp ios kosong,Log Konami,reg indo' },
+      { id: 4, title: 'Akun eFootball - Pemula2', price: 30000, rank: 'new1', img: 'akun30k2.jpeg', desc: 'Gp ios kosong,Log Konami,reg indo' },
+      { id: 5, title: 'Akun eFootball - Pemula3', price: 30000, rank: 'new2', img: 'akun30k3.jpeg', desc: 'Gp ios kosong,Log Konami,reg indo' }
+    ];
+
+    // ====== Cart logic ======
+    let cart = JSON.parse(localStorage.getItem('rahman_cart') || '[]');
+
+    const productGrid = document.getElementById('productGrid');
+    const cartCountEl = document.getElementById('cartCount');
+    const cartModal = document.getElementById('cartModal');
+    const cartList = document.getElementById('cartList');
+    const cartTotalEl = document.getElementById('cartTotal');
+
+    function renderProducts(filter='all'){
+      productGrid.innerHTML = '';
+      const items = PRODUCTS.filter(p => filter==='all' ? true : p.rank===filter);
+      items.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-lg p-3 shadow-sm card-hover';
+        card.innerHTML = `
+          <img src="${p.img}" alt="${p.title}" class="w-full h-40 object-cover rounded-md" />
+          <h4 class="mt-3 font-semibold">${p.title}</h4>
+          <p class="text-sm text-gray-500">${p.desc}</p>
+          <div class="mt-3 flex items-center justify-between">
+            <div class="text-lg font-bold">Rp ${p.price.toLocaleString('id-ID')}</div>
+            <div class="flex gap-2">
+              <button data-id="${p.id}" class="addBtn px-3 py-2 bg-indigo-600 text-white rounded-md">Tambah</button>
+              <button data-id="${p.id}" class="waBtn px-3 py-2 border rounded-md">WA</button>
+            </div>
+          </div>
+        `;
+        productGrid.appendChild(card);
+      });
+      attachProductButtons();
+    }
+
+    function attachProductButtons(){
+      document.querySelectorAll('.addBtn').forEach(b=> b.onclick = () => addToCart(parseInt(b.dataset.id)));
+      document.querySelectorAll('.waBtn').forEach(b=> b.onclick = () => contactSeller(parseInt(b.dataset.id)));
+    }
+
+    function addToCart(id){
+      const p = PRODUCTS.find(x=>x.id===id);
+      const existing = cart.find(c=>c.id===id);
+      if(existing) existing.qty++;
+      else cart.push({ id: p.id, title: p.title, price: p.price, qty: 1 });
+      saveCart();
+      renderCartCount();
+      alert('Produk ditambahkan ke keranjang');
+    }
+
+    function saveCart(){
+      localStorage.setItem('rahman_cart', JSON.stringify(cart));
+    }
+
+    function renderCartCount(){
+      const count = cart.reduce((s,i)=>s+i.qty,0);
+      cartCountEl.textContent = count;
+    }
+
+    function openCart(){
+      renderCartItems();
+      cartModal.classList.remove('hidden');
+      document.body.classList.add('no-scroll');
+    }
+    function closeCart(){
+      cartModal.classList.add('hidden');
+      document.body.classList.remove('no-scroll');
+    }
+
+    function renderCartItems(){
+      if(cart.length===0){ cartList.innerHTML = '<div class="text-gray-500">Keranjang kosong.</div>'; cartTotalEl.textContent = 0; return; }
+      cartList.innerHTML = '';
+      let total = 0;
+      cart.forEach(item => {
+        total += item.price * item.qty;
+        const row = document.createElement('div');
+        row.className = 'flex items-center justify-between';
+        row.innerHTML = `<div>
+            <div class="font-semibold">${item.title}</div>
+            <div class="text-sm text-gray-500">Rp ${item.price.toLocaleString('id-ID')} x ${item.qty}</div>
+          </div>
+          <div class="flex items-center gap-2">
+            <button class="decBtn px-2 py-1 border rounded" data-id="${item.id}">-</button>
+            <button class="incBtn px-2 py-1 border rounded" data-id="${item.id}">+</button>
+            <button class="rmBtn px-2 py-1 text-red-600" data-id="${item.id}">Hapus</button>
+          </div>`;
+        cartList.appendChild(row);
+      });
+      cartTotalEl.textContent = total.toLocaleString('id-ID');
+      // attach cart controls
+      document.querySelectorAll('.decBtn').forEach(b=> b.onclick = ()=> updateQty(parseInt(b.dataset.id), -1));
+      document.querySelectorAll('.incBtn').forEach(b=> b.onclick = ()=> updateQty(parseInt(b.dataset.id), +1));
+      document.querySelectorAll('.rmBtn').forEach(b=> b.onclick = ()=> removeFromCart(parseInt(b.dataset.id)));
+    }
+
+    function updateQty(id, delta){
+      const it = cart.find(c=>c.id===id);
+      if(!it) return;
+      it.qty += delta;
+      if(it.qty<=0) cart = cart.filter(c=>c.id!==id);
+      saveCart(); renderCartItems(); renderCartCount();
+    }
+    function removeFromCart(id){ cart = cart.filter(c=>c.id!==id); saveCart(); renderCartItems(); renderCartCount(); }
+
+    // Checkout via WhatsApp: prefill message with order details
+    function checkoutViaWA(){
+      if(cart.length===0){ alert('Keranjang kosong.'); return; }
+      let total = cart.reduce((s,i)=>s+i.price*i.qty,0);
+      let text = 'Halo%20Rahman%20Store%2C%20saya%20ingin%20memesan%20produk%3A%0A';
+      cart.forEach(i=>{ text += `- ${encodeURIComponent(i.title)}%20x${i.qty}%20(%20Rp%20${i.price.toLocaleString('id-ID')}%20)%0A`; });
+      text += `%0ATotal%3A%20Rp%20${total.toLocaleString('id-ID')}%0A%0A`; 
+      text += 'Nama%3A%20%0ANomor%20WA%3A%20%0AAlamat%20(optional)%3A%20';
+      const waNumber = '6281234567890'; // ganti dengan nomor Anda
+      const waUrl = `https://wa.me/6285183415077?text=${text}`;
+      window.open(waUrl, '_blank');
+    }
+
+    // quick contact for single product
+    function contactSeller(id){
+      const p = PRODUCTS.find(x=>x.id===id); 
+      const waNumber = '6281234567890';
+      const text = `Halo%20Rahman%20Store%2C%20apakah%20${encodeURIComponent(p.title)}%20masih%20tersedia%3F`;
+      window.open(`https://wa.me/6285183415077?text=${text}`, '_blank');
+    }
+
+    // Sell form -> create a message and open WA
+    document.getElementById('sellForm').onsubmit = function(e){
+      e.preventDefault();           
+      const fd = new FormData(e.target);
+      const name = encodeURIComponent(fd.get('name'));
+      const wa = encodeURIComponent(fd.get('wa'));
+      const title = encodeURIComponent(fd.get('title'));
+      const desc = encodeURIComponent(fd.get('desc'));
+      const price = encodeURIComponent(fd.get('price'));
+      const waNumber = '6281234567890';
+      const text = `Seller%20Listing%0ANama%3A%20${name}%0AWA%3A%20${wa}%0AJudul%3A%20${title}%0ADeskripsi%3A%20${desc}%0AHarga%3A%20Rp%20${price}`;
+      window.open(`https://wa.me/6285183415077?text=${text}`, '_blank');
+    }
+
+    // UI bindings
+    document.getElementById('openCartBtn').onclick = openCart;
+    document.getElementById('closeCartBtn').onclick = closeCart;
+    document.getElementById('clearCartBtn').onclick = ()=>{ cart=[]; saveCart(); renderCartItems(); renderCartCount(); };
+    document.getElementById('checkoutBtn').onclick = checkoutViaWA;
+    document.getElementById('filterRank').onchange = (e)=> renderProducts(e.target.value);
+
+    // initial render
+    renderProducts(); renderCartCount();
+
+  </script>
+</body>
+</html>
